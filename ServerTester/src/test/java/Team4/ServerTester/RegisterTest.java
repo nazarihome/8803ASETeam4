@@ -103,6 +103,8 @@ public class RegisterTest extends TestCase {
 						restmp  =given ().param("email",tmpuser.email).when().delete("/server_1/webapi/users/delete")
 						.then().extract().response();
 				}
+				if(count!=passed_count)
+				System.exit(1);
 				assertEquals(count,passed_count);
 			}catch (IOException e) {
 

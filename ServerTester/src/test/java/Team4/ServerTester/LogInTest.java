@@ -108,6 +108,8 @@ public class LogInTest extends TestCase {
 				count++;
 			}
 			//test fails if any test case fails
+			if(count!=passed_count)
+				System.exit(1);
 			assertEquals(count,passed_count);
 		}catch (IOException e) {
 
