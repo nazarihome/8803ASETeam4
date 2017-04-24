@@ -1,7 +1,5 @@
-import mmap
-f = open('out.txt')
-s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
-if s.find('Failures: 1') != -1:
-    print sys.exit(1)
-if s.find('Failures: 2') != -1:
-    print sys.exit(1)
+import sys
+if 'Failures: 1' in open('out.txt').read():
+    sys.exit(1)
+if 'Failures: 2' in open('out.txt').read():
+    sys.exit(1)
