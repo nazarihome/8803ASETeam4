@@ -57,7 +57,7 @@ public class RegisterTest extends TestCase {
 				String line;
 				long count=1;
 				long passed_count=1;
-				System.out.println( "Test started...");  
+				System.out.println( "Test started for Register API...");  
 				while((line = br.readLine()) != null) {
 					 
 					//System.out.println( line);

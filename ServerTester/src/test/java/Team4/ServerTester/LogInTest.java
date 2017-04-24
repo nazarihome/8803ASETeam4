@@ -19,12 +19,10 @@ public class LogInTest extends TestCase {
 	@BeforeClass
 	  public void setBaseUri () {
 
-	    RestAssured.baseURI = "http://104.196.62.142";//:8080/server_1/webapi/users/login?email=rq@gatech.edu&password=1111";
+	   // RestAssured.baseURI = "http://104.196.62.142";//:8080/server_1/webapi/users/login?email=rq@gatech.edu&password=1111";
 	    
-        RestAssured.port = Integer.valueOf(8080);
-       	System.out.println("Test Started...\n");
-
-
+       /// RestAssured.port = Integer.valueOf(8080);
+       //	System.out.println("Test Started...\n");
        
 
     }
@@ -33,7 +31,7 @@ public class LogInTest extends TestCase {
 
 	@Test
 	  public void testLogInMessage () {
-		
+		//Reading test server address from file
 		BufferedReader tbr = null;
 		FileReader tfr = null;
 		try {
@@ -53,6 +51,8 @@ public class LogInTest extends TestCase {
 		    
 	   //RestAssured.port = Integer.valueOf(8080);
 	     
+		
+		//Reading tests from login file
 	    BufferedReader br = null;
 		FileReader fr = null;
 		try {
@@ -70,7 +70,7 @@ public class LogInTest extends TestCase {
 			String line;
 			long count=1;
 			long passed_count=1;
-			System.out.println( "Test started...");  
+			System.out.println( "Test started for Login API...");  
 			while((line = br.readLine()) != null) {
 				 
 				//System.out.println( line);
@@ -79,6 +79,7 @@ public class LogInTest extends TestCase {
 				username=part[0]; 
 				password=part[1]; 
 				status=part[2];
+				//Making parameter string and send them to server to recieve responce
 				Response res  =given ().param ("email", username)
 					    .param ("password", password)
 					    .when()
@@ -87,9 +88,8 @@ public class LogInTest extends TestCase {
 					    response();
 					    
 				
-				//System.out.println(res.getBody().print());
-					    //.contentType(ContentType.TEXT_PLAIN)
-					   // .extract().response();
+				
+				//checking server response 
 				long Token=Long.valueOf(res.getBody().asString());
 				if (Token==0)
 					teststatus="fail";
@@ -97,7 +97,7 @@ public class LogInTest extends TestCase {
 					teststatus="success";
 				
 			
-				
+				//checking if test failed
 				if(teststatus.equals(status)){
 					System.out.println("Test"+Long.toString(count)+" passed!");
 					passed_count++;
@@ -107,6 +107,7 @@ public class LogInTest extends TestCase {
 				
 				count++;
 			}
+			//test fails if any test case fails
 			assertEquals(count,passed_count);
 		}catch (IOException e) {
 

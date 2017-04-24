@@ -37,8 +37,14 @@ UserService loginreqhandler=new UserService();
 		if (loginreqhandler.login(reqUser)){ 
     		Random rand = new Random(); 
     		int T =rand.nextInt(5000000)+1; 
-    				
+    		
+    		
+    		if (TokenMap.containsKey(reqUser.email)){
+    			return TokenMap.get(reqUser.email);
+    		}
     		TokenMap.put(reqUser.email,T);
+    		
+    		
     		return T;
     	}
 		return 0;
@@ -91,6 +97,7 @@ UserService loginreqhandler=new UserService();
     }
     
     ///////////Fake Backend APIs////////////////
+    //not used any more
     @GET
 	@Path("/bklogin")
     @Produces(MediaType.TEXT_PLAIN)
