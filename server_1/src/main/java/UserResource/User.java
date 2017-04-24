@@ -1,5 +1,3 @@
-//this class is container for server user structure
-
 package UserResource;
 
 import javax.xml.bind.annotation.XmlRootElement;

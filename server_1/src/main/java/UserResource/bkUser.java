@@ -1,5 +1,3 @@
-//this class is container for backend user structure
-
 package UserResource;
 
 import java.util.Random;
