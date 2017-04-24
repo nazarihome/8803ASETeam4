@@ -19,7 +19,7 @@ import com.jayway.restassured.RestAssured;
 public class UserService {
 	//handling login requests with backend
 	public boolean login(User tmpuser){
-		
+/*		
 		//reading backend address from config file
 		BufferedReader tbr = null;
 		FileReader tfr = null;
@@ -37,11 +37,11 @@ public class UserService {
 			e.printStackTrace();
 			//System.out.println(backend_adr);
 		}
-
+*/
 		///should ask backend about user, 
 		Client client=ClientBuilder.newClient();
 		
-		Message response=client.target(backend_adr+"/api/users/v1/login?email="+tmpuser.email+
+		Message response=client.target("http://playlist-backend2.appspot.com/_ah/api/users/v1/login?email="+tmpuser.email+
 						"&password="+tmpuser.password).request(MediaType.APPLICATION_JSON).get(Message.class);
 		
 		
@@ -91,7 +91,7 @@ public class UserService {
 	//handling deleting requests with backend
 	public boolean deleteaccount(String email){
 		//reading backend address from config file
-				BufferedReader tbr = null;
+/*				BufferedReader tbr = null;
 				FileReader tfr = null;
 				String backend_adr = null;
 				try {
@@ -107,9 +107,9 @@ public class UserService {
 					e.printStackTrace();
 					//System.out.println(backend_adr);
 				}
-
+*/
 		Client client=ClientBuilder.newClient();
-		Message response=client.target(backend_adr+"/api/users/v1/delete?email="+email)
+		Message response=client.target("http://playlist-backend2.appspot.com/_ah/api/users/v1/delete?email="+email)
 				.request(MediaType.APPLICATION_JSON).delete(Message.class);
 		
 		if (response.message.contains("200"))
